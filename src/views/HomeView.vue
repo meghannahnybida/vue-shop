@@ -37,7 +37,7 @@ export default {
       return this.products.filter(item => item.price < Number(this.max))
     },
     searchedProducts() {
-      return this.filteredProducts.filter(p => {
+      return this.products.filter(p => {
         return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
       })
     }
