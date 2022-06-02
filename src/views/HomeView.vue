@@ -18,7 +18,8 @@ export default {
   data() {
     return {
       max: 50,
-      cart: []
+      cart: [],
+      search: ''
     }
   },
   props: ['products'],
@@ -28,13 +29,17 @@ export default {
   },
   computed: {
     filteredProducts() {
-      return this.products.filter(item => item.price < Number(this.max))
-    },
-    searchedProducts() {
-      return this.products.filter(p => {
-        return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
-      })
+      return this.products
+        .filter(item => item.price < Number(this.max))
+        .filter(p => {
+          return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+        })
     }
+    // searchedProducts() {
+    //   return this.products.filter(p => {
+    //     return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+    //   })
+    // }
   }
 }
 </script>

@@ -12,8 +12,8 @@
     </div> -->
   </div>
   <div class="container">
-    <home-view :products="products" />
     <router-view
+      :products="searchedProducts"
       :cart="cart"
       @addItem="addItem"
       @delete-item="deleteItem"
@@ -24,7 +24,7 @@
 
 <script>
 import NavBar from '@/components/NavBar'
-import HomeView from '@/views/HomeView'
+
 export default {
   data: function () {
     return {
@@ -34,8 +34,7 @@ export default {
     }
   },
   components: {
-    NavBar,
-    HomeView
+    NavBar
   },
   created() {
     fetch('https://hplussport.com/api/products/order/price')
@@ -84,12 +83,12 @@ export default {
         qty = qty + this.cart[key].qty
       }
       return qty
+    },
+    searchedProducts() {
+      return this.products.filter(p => {
+        return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+      })
     }
-    // filteredProducts() {
-    //   return this.products.filter(p => {
-    //     return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
-    //   })
-    // }
   }
 }
 </script>
