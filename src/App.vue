@@ -5,11 +5,12 @@
     :cart-qty="cartQty"
     @delete-item="deleteItem"
   />
-  <div id="app"></div>
-  <!-- <div class="search-wrapper panel-heading col-sm-12">
-    <input type="text" v-model="search" placeholder="Search" /> <br />
-    <br />
-  </div> -->
+  <div id="app">
+    <!-- <div class="search-wrapper panel-heading col-sm-12">
+      <input type="text" v-model="search" placeholder="Search" /> <br />
+      <br />
+    </div> -->
+  </div>
   <div class="container">
     <home-view :products="products" />
     <router-view

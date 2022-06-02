@@ -1,10 +1,9 @@
 <template>
-  <div class="search-wrapper panel-heading col-sm-12">
-    <input type="text" v-model="search" placeholder="Search" />
-    <br />
-    <br />
-  </div>
   <section class="container">
+    <div class="search-wrapper panel-heading col-sm-12">
+      <input type="text" v-model="search" placeholder="Search" /> <br />
+      <br />
+    </div>
     <range-selector :products="filteredProducts" v-model="max" />
     <product-list :products="filteredProducts" />
   </section>
@@ -20,15 +19,6 @@ export default {
     return {
       max: 50,
       cart: []
-      // search: ''
-    }
-  },
-  watch: {
-    search: '',
-    searchedProducts() {
-      return this.products.filter(p => {
-        return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
-      })
     }
   },
   props: ['products'],
@@ -36,16 +26,15 @@ export default {
     RangeSelector,
     ProductList
   },
-  // emits: ['products'],
   computed: {
     filteredProducts() {
       return this.products.filter(item => item.price < Number(this.max))
+    },
+    searchedProducts() {
+      return this.products.filter(p => {
+        return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+      })
     }
-    // searchedProducts() {
-    //   return this.products.filter(p => {
-    //     return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
-    //   })
-    // }
   }
 }
 </script>
