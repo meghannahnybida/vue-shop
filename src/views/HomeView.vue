@@ -24,7 +24,12 @@ export default {
     }
   },
   watch: {
-    search: ''
+    search: '',
+    searchedProducts() {
+      return this.products.filter(p => {
+        return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+      })
+    }
   },
   props: ['products'],
   components: {
@@ -35,12 +40,12 @@ export default {
   computed: {
     filteredProducts() {
       return this.products.filter(item => item.price < Number(this.max))
-    },
-    searchedProducts() {
-      return this.products.filter(p => {
-        return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
-      })
     }
+    // searchedProducts() {
+    //   return this.products.filter(p => {
+    //     return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+    //   })
+    // }
   }
 }
 </script>
